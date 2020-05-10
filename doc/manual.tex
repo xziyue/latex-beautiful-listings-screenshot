@@ -99,9 +99,9 @@ int main(){
 \item Typeset source code from external source files
 
 \begin{tcbsrccode}{text}
-\tcbinputcode*{cpp}{example.cpp}
+\tcbinputcode*{cpp}{../res/example.cpp}
 \end{tcbsrccode}
-\tcbinputcode*{cpp}{example.cpp}
+\tcbinputcode*{cpp}{../res/example.cpp}
 
 \item Inline source code
 
@@ -153,9 +153,9 @@ __________________________  ___
 \item Typeset generic verbatims from external files
 
 \begin{tcbsrccode}{text}
-\tcbinputverbatim*{wireshark.txt}
+\tcbinputverbatim*{../res/wireshark.txt}
 \end{tcbsrccode}
-\tcbinputverbatim*{wireshark.txt}
+\tcbinputverbatim*{../res/wireshark.txt}
 
 \end{itemize}
 
@@ -166,7 +166,7 @@ Typesetting console screenshots is a bit trickier. By far, it can be done most c
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.5\linewidth]{ubuntu-html}
+\includegraphics[width=0.5\linewidth]{../res/ubuntu-html}
 \caption{Converting terminal output to HTML on Ubuntu 18.04+.}
 \label{fig:ubuntu-conv}
 \end{figure} 
@@ -180,13 +180,13 @@ Generally speaking, one needs to fulfill the following requirements:
 To typeset this screenshot in \LaTeX, one needs to run \rawinline|html2latex| and paste the HTML in the upper text box. By pressing the ``Convert`` button, the corresponding \LaTeX\ code will appear in the lower text box, as it is shown in Figure \ref{fig:python-html2latex}. The result is shown as below.
 
 \begin{tcbsrccode}{text}
-\input{console-dev.txt}
+\input{../res/console-dev.txt}
 \end{tcbsrccode}
-\input{console-dev.txt}
+\input{../res/console-dev.txt}
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.7\linewidth]{html2latex}
+\includegraphics[width=0.7\linewidth]{../res/html2latex}
 \caption{Using \rawinline|html2latex| to convert HTML to \LaTeX.}
 \label{fig:python-html2latex}
 \end{figure} 
@@ -194,9 +194,9 @@ To typeset this screenshot in \LaTeX, one needs to run \rawinline|html2latex| an
 Other classic command-line tools, such as \rawinline|emacs|, are supported as well.
 
 \begin{tcbsrccode}{text}
-\input{console-emacs.txt}
+\input{../res/console-emacs.txt}
 \end{tcbsrccode}
-\input{console-emacs.txt}
+\input{../res/console-emacs.txt}
 
 
 
@@ -219,9 +219,9 @@ As for the most commonly used pdf\LaTeX, special treatment is needed. The soluti
 A pdf\LaTeX example is shown as below. However, keep in mind that \texttt{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX.
 
 \begin{tcbsrccode}{text}
-\input{console-unicode.txt}
+\input{../res/console-unicode.txt}
 \end{tcbsrccode}
-\input{console-unicode.txt}
+\input{../res/console-unicode.txt}
 
 
 \section{Add Captions}
