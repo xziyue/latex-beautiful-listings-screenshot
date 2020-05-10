@@ -1,10 +1,14 @@
 \documentclass[letterpaper, 11pt, DIV=11]{scrartcl}
+\usepackage[utf8x]{inputenc}
 \usepackage{../customlisting}
+\usepackage{../customlisting-unicode}
 \usepackage[american]{babel}
 \usepackage{mathptmx}
 \usepackage{graphicx}
 \usepackage{microtype}
+\usepackage{metalogo}
 \usepackage{hyperref}
+
 
 \addtokomafont{disposition}{\rmfamily}
 \author{\href{https://www.alanshawn.com}{Ziyue ``Alan'' Xiang}}
@@ -15,14 +19,13 @@
 \newmintinline[texinline]{latex}{frame=none, fontsize=\fontsize{10}{10}}
 
 \newtcblisting{tcbsrccode}[1]{
-    listing only, listing engine=minted,
-    enhanced jigsaw, breakable, colback=black!5, boxsep=0pt, colframe=black!30, top=5pt, bottom=5pt, left=8mm, right=2mm, boxrule=2pt,
-    minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=4,fontsize=\fontsize{8}{8}},
+    tcbcodebasestyle,listing engine=minted, breakable, colback=black!5, boxsep=0pt, colframe=black!30, minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=2,fontsize=\fontsize{8}{8}},
     minted language=#1
 }
 
 
 \begin{document}
+
 
 \pagenumbering{Roman}
 
@@ -56,6 +59,8 @@ This package also provides the following commands:
 \end{itemize}
 
 The starred environments/commands offer \emph{unbreakable} listing boxes; while normal ones are \emph{breakable}.
+
+
 
 \section{Typeset Source Code Listings}
 
@@ -163,10 +168,10 @@ Typesetting console screenshots is a bit trickier. By far, it can be done most c
 Generally speaking, one needs to fulfill the following requirements:
 \begin{enumerate}
 \item Have a way of converting terminal output to HTML.
-\item Be able to run the HTML to \LaTeX\ Python \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/html2tex_gui.py}{script}. Currently, the script is dependent on \href{https://pypi.org/project/wxPython/}{\rawinline|wxPython|}, \href{https://pypi.org/project/TexSoup/}{\rawinline|TexSoup|} and \href{https://pypi.org/project/PyLaTeX/}{\rawinline|PyLaTeX|}.
+\item Be able to run the \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/html2tex_gui.py}{\rawinline|html2latex|} \LaTeX\ Python script. Currently, the script is dependent on \href{https://pypi.org/project/wxPython/}{\rawinline|wxPython|}, \href{https://pypi.org/project/TexSoup/}{\rawinline|TexSoup|} and \href{https://pypi.org/project/PyLaTeX/}{\rawinline|PyLaTeX|}. Notice that this software is very primitive and does not support many HTML features.
 \end{enumerate}
 
-To typeset this screenshot in \LaTeX, one needs to run the Python script and paste the HTML in the upper text box. By pressing the ``Convert`` button, the corresponding \LaTeX\ code will appear in the bottom text box, as it is shown in Figure \ref{fig:python-html2latex}. The result is shown as below.
+To typeset this screenshot in \LaTeX, one needs to run \rawinline|html2latex| and paste the HTML in the upper text box. By pressing the ``Convert`` button, the corresponding \LaTeX\ code will appear in the lower text box, as it is shown in Figure \ref{fig:python-html2latex}. The result is shown as below.
 
 \begin{tcbsrccode}{text}
 \input{console-dev.txt}
@@ -175,8 +180,8 @@ To typeset this screenshot in \LaTeX, one needs to run the Python script and pas
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.5\linewidth]{html2latex}
-\caption{Using Python script to convert HTML to \LaTeX.}
+\includegraphics[width=0.7\linewidth]{html2latex}
+\caption{Using \rawinline|html2latex| to convert HTML to \LaTeX.}
 \label{fig:python-html2latex}
 \end{figure} 
 
@@ -188,7 +193,30 @@ Other classic command-line tools, such as \rawinline|emacs|, are supported as we
 \input{console-emacs.txt}
 
 
+
+
 \subsection{Unicode Support}
+
+Very frequently, the terminal output contains Unicode characters. For \TeX distribution that supports Unicode input natively (e.g. \XeLaTeX, \LuaLaTeX), this should not be a problem. Just remember to tick the ``XeLaTeX`` check box in \rawinline|html2latex|.
+
+
+As for the most commonly used pdf\LaTeX, special treatment is needed. The solution is to use the \texinline|\unichar| command provided by loading \texinline|\usepackage[utf8x]{inputenc}|. Therefore, if you are using pdf\LaTeX and there is Unicode character inside the terminal output, you should do the following:
+
+\begin{enumerate}
+\item Make sure to include \texinline|\usepackage[utf8x]{inputenc}| in your preamble.
+\item Put \rawinline|customlisting-unicode.sty| into your project folder and load it with 
+
+\texinline|\usepackage{customlisting-unicode}|.
+\item In \rawinline|html2latex|, make sure ``XeLaTeX`` is unchecked.
+\end{enumerate}
+
+A pdf\LaTeX example is shown as below. However, keep in mind that \texttt{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX.
+
+\begin{tcbsrccode}{text}
+\input{console-unicode.txt}
+\end{tcbsrccode}
+\input{console-unicode.txt}
+
 
 \section{Add Captions}
 

@@ -1,0 +1,14 @@
+{
+\definecolor{xxxhtmlcolorOAEIJK}{HTML}{8AE234}
+\definecolor{xxxhtmlcolorNIPFCF}{HTML}{729FCF}
+\setlength{\fboxsep}{0pt}
+\begin{tcbconsole}
+(base) %*{\color{xxxhtmlcolorOAEIJK}{\bfseries alan@AlanShawn{-}SU{-}Ubuntu}}*):%*{\color{xxxhtmlcolorNIPFCF}{\bfseries \textasciitilde{}/latex\_typeset\_listings/doc}}*)$ cat unicode-test.txt 
+Basic Latin
+! " # $ % & ' ( ) * +
+Latin-1 Supplement
+  %*\unichar{161}*) %*\unichar{162}*) %*\unichar{163}*) %*\unichar{164}*) %*\unichar{165}*) %*\unichar{166}*) %*\unichar{167}*) %*\unichar{168}*) %*\unichar{169}*) %*\unichar{170}*)
+Latin Extended-A
+%*\unichar{256}*) %*\unichar{257}*) %*\unichar{258}*) %*\unichar{259}*) %*\unichar{262}*) %*\unichar{263}*) %*\unichar{264}*) %*\unichar{265}*) %*\unichar{266}*)
+\end{tcbconsole}
+}

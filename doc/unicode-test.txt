@@ -1,0 +1,6 @@
+Basic Latin
+! " # $ % & ' ( ) * +
+Latin-1 Supplement
+  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª
+Latin Extended-A
+Ā ā Ă ă Ć ć Ĉ ĉ Ċ

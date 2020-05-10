@@ -89,9 +89,11 @@ def parse_css_style(styleStr):
 
 class HTMLTree2Latex:
 
-    def __init__(self):
+    def __init__(self, xelatex=False, useHex=False):
         self.colorConv = dict()
         self.result = []
+        self.xelatex = xelatex
+        self.useHex = useHex
 
         self.colorNameConvDict = dict()
         for i in range(ord('A'), ord('F') + 1):
@@ -147,18 +149,24 @@ class HTMLTree2Latex:
     def _escape_utf8(self, data):
         reconData = []
         for s in data:
-            if ord(s) < 128:
+            if self.xelatex:
                 reconData.append(s)
             else:
-            	sInd = ord(s)
-            	if sInd == 0xfffd:
-            		reconData.append('%*\\ucr*)')
-            	elif sInd == 0x2588:
-            		reconData.append(r'%*$\blacksquare$*)')
-            	else:
-	                hexCode = '{:x}'.format(ord(s))
-	                escapedS = '%*\\unichar{{\"{}}}*)'.format(hexCode)
-	                reconData.append(escapedS)
+                if ord(s) < 128:
+                    reconData.append(s)
+                else:
+                    sInd = ord(s)
+                    if sInd == 0xfffd:
+                        reconData.append('%*\\ucr*)')
+                    elif sInd == 0x2588:
+                        reconData.append(r'%*$\blacksquare$*)')
+                    else:
+                        if self.useHex:
+                            hexCode = '{:x}'.format(ord(s))
+                            escapedS = '%*\\unichar{{\"{}}}*)'.format(hexCode)
+                        else:
+                            escapedS = '%*\\unichar{{{}}}*)'.format(ord(s))
+                        reconData.append(escapedS)
         return NoEscape(''.join(reconData))
 
     # allow consecutive white spaces in latex
@@ -248,28 +256,12 @@ class HTMLTree2Latex:
             result.extend(endCap)
 
 
-def html_to_console_style_f(filename):
-    root, tree = get_html_tree_f(filename)
-    preEntity = find_pre_in_tree(root)
-    assert preEntity is not None
-    html2altex = HTMLTree2Latex()
-    colorDef, content = html2altex.to_latex(preEntity)
 
-    outputFmt = r'''{\lstconsolestylenf
-%s
-\begin{consolebox}
-\begin{lstlisting}
-%s
-\end{lstlisting}
-\end{consolebox}}'''
-
-    return outputFmt%(colorDef, ''.join(content))
-
-def html_to_console_style(text):
+def html_to_console_style(text, xelatex=False, useHex=False):
     root, tree = get_html_tree(text)
     preEntity = find_pre_in_tree(root)
     assert preEntity is not None
-    html2altex = HTMLTree2Latex()
+    html2altex = HTMLTree2Latex(xelatex, useHex)
     colorDef, content = html2altex.to_latex(preEntity)
 
     outputFmt = r'''{
@@ -302,9 +294,17 @@ if __name__ == '__main__':
             sizer.Add(self.textIn, 1, wx.ALL | wx.EXPAND, 10)
             sizer.Add(self.textOut, 1, wx.ALL | wx.EXPAND, 10)
 
+
+            hSizer = wx.BoxSizer(wx.HORIZONTAL)
+            self.chkXelatex = wx.CheckBox(self.panel, label='XeLaTeX')
+            self.chkHex = wx.CheckBox(self.panel, label='Use Hex Char Code')
             self.btnConv = wx.Button(self.panel, label='Convert')
             self.btnConv.Bind(wx.EVT_BUTTON, self.evtBtn)
-            sizer.Add(self.btnConv, 0, wx.ALL | wx.ALIGN_CENTER, 5)
+            hSizer.Add(self.chkXelatex, 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 10)
+            hSizer.Add(self.chkHex, 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 10)
+            hSizer.Add(self.btnConv, 1, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 10)
+
+            sizer.Add(hSizer, 0, wx.ALL | wx.EXPAND | wx.ALIGN_CENTER_HORIZONTAL)
 
             self.panel.SetSizerAndFit(sizer)
 
@@ -314,7 +314,7 @@ if __name__ == '__main__':
             inText = self.textIn.GetValue()
             result = None
             try:
-                result = html_to_console_style(inText)
+                result = html_to_console_style(inText, self.chkXelatex.GetValue(), self.chkHex.GetValue())
             except Exception as e:
                 wx.MessageBox('An exception occured during conversion: {}'.format(repr(e)), 'Exception', wx.OK | wx.ICON_ERROR)
 

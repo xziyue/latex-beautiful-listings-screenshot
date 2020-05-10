@@ -5,7 +5,7 @@
 \definecolor{xxxhtmlcolorIEJKJM}{HTML}{2E3436}
 \definecolor{xxxhtmlcolorLLLNLJ}{HTML}{555753}
 \setlength{\fboxsep}{0pt}
-\begin{tcbconsole*}
+\begin{tcbconsole}
 %*\smash{\colorbox{xxxhtmlcolorMLNBOJ}{{\color{xxxhtmlcolorFDFMEJ}File\space Edit\space Options\space Buffers\space Tools\space Help\space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space }}}*)
 Emacs tutorial.  See end for copying conditions.
 
@@ -29,5 +29,5 @@ try using a command.  For instance:
         From now on, you should do this again whenever you finish
         reading the screen.
 %*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorIEJKJM}{-}UU{-}:{-}{-}{-}{-}F1\space \space }}}*)%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorLLLNLJ}{\bfseries TUTORIAL\space \space \space \space }}}}*)%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorIEJKJM}\space \space \space Top\space L1\space \space \space \space \space (Fundamental)\space {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}}}*)
-\end{tcbconsole*}
+\end{tcbconsole}
 }
