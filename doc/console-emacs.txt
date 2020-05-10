@@ -1,0 +1,33 @@
+{
+\definecolor{xxxhtmlcolorMLNBOJ}{HTML}{657B83}
+\definecolor{xxxhtmlcolorFDFMEJ}{HTML}{FDF6E3}
+\definecolor{xxxhtmlcolorBCBCBC}{HTML}{BCBCBC}
+\definecolor{xxxhtmlcolorIEJKJM}{HTML}{2E3436}
+\definecolor{xxxhtmlcolorLLLNLJ}{HTML}{555753}
+\setlength{\fboxsep}{0pt}
+\begin{tcbconsole*}
+%*\smash{\colorbox{xxxhtmlcolorMLNBOJ}{{\color{xxxhtmlcolorFDFMEJ}File\space Edit\space Options\space Buffers\space Tools\space Help\space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space }}}*)
+Emacs tutorial.  See end for copying conditions.
+
+Emacs commands generally involve the CONTROL key (sometimes labeled
+CTRL or CTL) or the META key (sometimes labeled EDIT or ALT).  Rather than
+write that in full each time, we'll use the following abbreviations:
+
+ C-<chr>  means hold the CONTROL key while typing the character <chr>
+          Thus, C-f would be: hold the CONTROL key and type f.
+ M-<chr>  means hold the META or EDIT or ALT key down while typing <chr>.
+          If there is no META, EDIT or ALT key, instead press and release the
+          ESC key and then type <chr>.  We write <ESC> for the ESC key.
+
+Important note: to end the Emacs session, type C-x C-c.  (Two characters.)
+To quit a partially entered command, type C-g.
+The characters ">>" at the left margin indicate directions for you to
+try using a command.  For instance:
+
+>> Now type C-v (View next screen) to move to the next screen.
+	(go ahead, do it by holding down the CONTROL key while typing v).
+        From now on, you should do this again whenever you finish
+        reading the screen.
+%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorIEJKJM}{-}UU{-}:{-}{-}{-}{-}F1\space \space }}}*)%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorLLLNLJ}{\bfseries TUTORIAL\space \space \space \space }}}}*)%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorIEJKJM}\space \space \space Top\space L1\space \space \space \space \space (Fundamental)\space {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}}}*)
+\end{tcbconsole*}
+}

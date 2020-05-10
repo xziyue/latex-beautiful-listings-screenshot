@@ -274,7 +274,7 @@ def html_to_console_style(text):
 
     outputFmt = r'''{
 %s
-\setlength{\fboxsep}{1pt}
+\setlength{\fboxsep}{0pt}
 \begin{tcbconsole}
 %s
 \end{tcbconsole}

@@ -1,0 +1,15 @@
+{
+\definecolor{xxxhtmlcolorIEJKJM}{HTML}{2E3436}
+\definecolor{xxxhtmlcolorFCEPKF}{HTML}{FCE94F}
+\definecolor{xxxhtmlcolorNIPFCF}{HTML}{729FCF}
+\setlength{\fboxsep}{0pt}
+\begin{tcbconsole*}
+%*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ashmem}}}}*)           %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop17}}}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries psaux}}}}*)     %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries tty30}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ttyS2}}}}*)
+%*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries autofs}}}}*)           %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop18}}}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ptmx}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries tty31}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ttyS20}}}}*)
+%*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries binder}}}}*)           %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop19}}}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ptp0}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries tty32}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ttyS21}}}}*)
+%*{\color{xxxhtmlcolorNIPFCF}{\bfseries block}}*)            %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop2}}}}*)               %*{\color{xxxhtmlcolorNIPFCF}{\bfseries pts}}*)       %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries tty33}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ttyS22}}}}*)
+%*{\color{xxxhtmlcolorNIPFCF}{\bfseries bsg}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop20}}}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries random}}}}*)    %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries tty34}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ttyS23}}}}*)
+%*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries btrfs{-}control}}}}*)    %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop21}}}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries rfkill}}}}*)    %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries tty35}}}}*)      %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries ttyS24}}}}*)
+%*{\color{xxxhtmlcolorNIPFCF}{\bfseries bus}}*)              %*\smash{\colorbox{xxxhtmlcolorIEJKJM}{{\color{xxxhtmlcolorFCEPKF}{\bfseries loop22}}}}*)
+\end{tcbconsole*}
+}
