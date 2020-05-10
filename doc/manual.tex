@@ -223,7 +223,7 @@ A pdf\LaTeX\ example is shown as below.
 \end{tcbsrccode}
 \input{../res/console-unicode.txt}
 
-However, keep in mind that \textbf{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX. For better Unicode support, one should use \XeLaTeX\ or \LuaLaTeX.
+However, keep in mind that \textbf{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX. Many packages are not compatible with \texinline|\usepackage[utf8x]{inputenc}|. One most notable example is \rawinline|biblatex|. Therefore, for better Unicode support, one should use \XeLaTeX\ or \LuaLaTeX.
 
 \section{Add Captions}
 
