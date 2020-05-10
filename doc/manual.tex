@@ -174,7 +174,7 @@ Typesetting console screenshots is a bit trickier. By far, it can be done most c
 Generally speaking, one needs to fulfill the following requirements:
 \begin{enumerate}
 \item Have a way of converting terminal output to HTML.
-\item Be able to run the \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/html2tex_gui.py}{\rawinline|html2latex|} \LaTeX\ Python script. Currently, the script is dependent on \href{https://pypi.org/project/wxPython/}{\rawinline|wxPython|}, \href{https://pypi.org/project/TexSoup/}{\rawinline|TexSoup|} and \href{https://pypi.org/project/PyLaTeX/}{\rawinline|PyLaTeX|}. Notice that this software is very primitive and does not support many HTML features.
+\item Be able to run the \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/html2tex_gui.py}{\rawinline|html2latex|} \LaTeX\ Python script. Currently, the script is dependent on \href{https://pypi.org/project/wxPython/}{\rawinline|wxPython|}, \href{https://pypi.org/project/TexSoup/}{\rawinline|TexSoup|}, \href{https://pypi.org/project/colour/}{colour} and \href{https://pypi.org/project/PyLaTeX/}{\rawinline|PyLaTeX|}. Please note that this software is very primitive and does not support many HTML features.
 \end{enumerate}
 
 To typeset this screenshot in \LaTeX, one needs to run \rawinline|html2latex| and paste the HTML in the upper text box. By pressing the ``Convert`` button, the corresponding \LaTeX\ code will appear in the lower text box, as it is shown in Figure \ref{fig:python-html2latex}. The result is shown as below.
