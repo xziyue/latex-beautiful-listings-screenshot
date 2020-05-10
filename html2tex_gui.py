@@ -1,3 +1,9 @@
+'''
+Converting HTML to LaTeX for typesetting consoles.
+
+Author: Alan Xiang (www.alanshawn.com)
+'''
+
 from html.parser import HTMLParser
 from colour import Color
 from pylatex.utils import escape_latex, NoEscape

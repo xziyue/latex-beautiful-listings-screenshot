@@ -166,7 +166,7 @@ Typesetting console screenshots is a bit trickier. By far, it can be done most c
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.5\linewidth]{../res/ubuntu-html}
+\includegraphics[width=0.6\linewidth]{../res/ubuntu-html}
 \caption{Converting terminal output to HTML on Ubuntu 18.04+.}
 \label{fig:ubuntu-conv}
 \end{figure} 
@@ -206,7 +206,7 @@ Other classic command-line tools, such as \rawinline|emacs|, are supported as we
 Very frequently, the terminal output contains Unicode characters. For \TeX distribution that supports Unicode input natively (e.g. \XeLaTeX, \LuaLaTeX), this should not be a problem. Just remember to tick the ``XeLaTeX`` check box in \rawinline|html2latex|.
 
 
-As for the most commonly used pdf\LaTeX, special treatment is needed. The solution is to use the \texinline|\unichar| command provided by loading \texinline|\usepackage[utf8x]{inputenc}|. Therefore, if you are using pdf\LaTeX and there is Unicode character inside the terminal output, you should do the following:
+As for the most commonly used pdf\LaTeX, special treatment is needed. The solution is to use the \texinline|\unichar| command provided by loading \texinline|\usepackage[utf8x]{inputenc}|. Therefore, if you are using pdf\LaTeX\ and there is Unicode character inside the terminal output, you should do the following:
 
 \begin{enumerate}
 \item Make sure to include \texinline|\usepackage[utf8x]{inputenc}| in your preamble.
@@ -216,7 +216,7 @@ As for the most commonly used pdf\LaTeX, special treatment is needed. The soluti
 \item In \rawinline|html2latex|, make sure ``XeLaTeX`` is unchecked.
 \end{enumerate}
 
-A pdf\LaTeX example is shown as below. However, keep in mind that \texttt{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX.
+A pdf\LaTeX\ example is shown as below. However, keep in mind that \texttt{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX.
 
 \begin{tcbsrccode}{text}
 \input{../res/console-unicode.txt}
