@@ -3,7 +3,7 @@
 \definecolor{xxxhtmlcolorNIPFCF}{HTML}{729FCF}
 \setlength{\fboxsep}{0pt}
 \begin{tcbconsole}
-(base) %*{\color{xxxhtmlcolorOAEIJK}{\bfseries alan@AlanShawn{-}SU{-}Ubuntu}}*):%*{\color{xxxhtmlcolorNIPFCF}{\bfseries \textasciitilde{}/latex\_typeset\_listings/doc}}*)$ cat unicode-test.txt 
+(base) %*{\color{xxxhtmlcolorOAEIJK}{\bfseries user@machine}}*):%*{\color{xxxhtmlcolorNIPFCF}{\bfseries \textasciitilde{}/latex\_typeset\_listings/doc}}*)$ cat unicode-test.txt 
 Basic Latin
 ! " # $ % & ' ( ) * +
 Latin-1 Supplement
