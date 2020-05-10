@@ -216,13 +216,14 @@ As for the most commonly used pdf\LaTeX, special treatment is needed. The soluti
 \item In \rawinline|html2latex|, make sure ``XeLaTeX`` is unchecked.
 \end{enumerate}
 
-A pdf\LaTeX\ example is shown as below. However, keep in mind that \texttt{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX.
+A pdf\LaTeX\ example is shown as below. 
 
 \begin{tcbsrccode}{text}
 \input{../res/console-unicode.txt}
 \end{tcbsrccode}
 \input{../res/console-unicode.txt}
 
+However, keep in mind that \textbf{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX. For better Unicode support, one should use \XeLaTeX\ or \LuaLaTeX.
 
 \section{Add Captions}
 
