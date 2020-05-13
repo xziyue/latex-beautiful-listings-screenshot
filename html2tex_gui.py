@@ -232,7 +232,7 @@ class HTMLTree2Latex:
                             self.addColorBoxDef = True
                             colorStr = cssStyle['background-color']
                             colorItem = self._get_color_item(colorStr)
-                            result.append(NoEscape(r'\smash{\colorbox{%s}{'%colorItem['latex_name']))
+                            result.append(NoEscape(r'\smash{\colorbox{%s}{\strut '%colorItem['latex_name']))
                             endCap.insert(0, NoEscape('}}'))
 
         if hasLatex:
@@ -306,11 +306,11 @@ if __name__ == '__main__':
             self.chkHex = wx.CheckBox(self.panel, label='Use Hex Char Code')
             self.btnConv = wx.Button(self.panel, label='Convert')
             self.btnConv.Bind(wx.EVT_BUTTON, self.evtBtn)
-            hSizer.Add(self.chkXelatex, 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 10)
-            hSizer.Add(self.chkHex, 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 10)
-            hSizer.Add(self.btnConv, 1, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 10)
+            hSizer.Add(self.chkXelatex, 0, wx.ALL | wx.ALIGN_CENTER, 10)
+            hSizer.Add(self.chkHex, 0, wx.ALL | wx.ALIGN_CENTER, 10)
+            hSizer.Add(self.btnConv, 1, wx.ALL | wx.ALIGN_CENTER, 10)
 
-            sizer.Add(hSizer, 0, wx.ALL | wx.EXPAND | wx.ALIGN_CENTER_HORIZONTAL)
+            sizer.Add(hSizer, 0, wx.ALL | wx.EXPAND)
 
             self.panel.SetSizerAndFit(sizer)
 
