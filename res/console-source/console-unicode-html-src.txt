@@ -1,0 +1,8 @@
+<pre>(base) <font color="#8AE234"><b>user@machine</b></font>:<font color="#729FCF"><b>~/latex_typeset_listings/res</b></font>$ cat unicode-test.txt 
+Basic Latin
+! &quot; # $ % &amp; &apos; ( ) * +
+Latin-1 Supplement
+  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª
+Latin Extended-A
+Ā ā Ă ă Ć ć Ĉ ĉ Ċ
+</pre>

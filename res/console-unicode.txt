@@ -1,9 +1,8 @@
 {
-\definecolor{xxxhtmlcolorOAEIJK}{HTML}{8AE234}
-\definecolor{xxxhtmlcolorNIPFCF}{HTML}{729FCF}
 \setlength{\fboxsep}{0pt}
+\definecolor{clrikocde}{HTML}{8ae234}\definecolor{clrhcjpmp}{HTML}{729fcf}
 \begin{tcbconsole}
-(base) %*{\color{xxxhtmlcolorOAEIJK}{\bfseries user@machine}}*):%*{\color{xxxhtmlcolorNIPFCF}{\bfseries \textasciitilde{}/latex\_typeset\_listings/res}}*)$ cat unicode-test.txt 
+(base) %*\bfseries{}\color{clrikocde}user@machine*):%*\bfseries{}\color{clrhcjpmp}\textasciitilde{}/latex\_typeset\_listings/res*)$ cat unicode-test.txt 
 Basic Latin
 ! " # $ % & ' ( ) * +
 Latin-1 Supplement

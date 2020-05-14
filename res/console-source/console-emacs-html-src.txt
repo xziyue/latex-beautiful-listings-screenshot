@@ -1,0 +1,25 @@
+<pre><span style="background-color:#657B83"><font color="#FDF6E3">File Edit Options Buffers Tools Info Help                                       </font></span>
+<span style="background-color:#BCBCBC"><font color="#2E3436"><u style="text-decoration-style:single">No next, prev or up links  --  This is the top of the INFO tree                 </u></font></span>
+<font color="#AF0000"><i><b>(dir)Top</b></i></font>                                                                        
+
+  This (the Directory node) gives a menu of major topics.
+  Typing &quot;q&quot; exits, &quot;H&quot; lists all Info commands, &quot;d&quot; returns here,
+  &quot;h&quot; gives a primer for first-timers,
+  &quot;mEmacs&lt;Return&gt;&quot; visits the Emacs manual, etc.
+
+  In Emacs, you can click mouse button 2 on a menu item or cross reference
+  to select it.
+
+<u style="text-decoration-style:single"><b>* Menu:</b></u>
+
+<u style="text-decoration-style:single"><b>Basics</b></u>
+* <font color="#5F5FD7"><u style="text-decoration-style:single">Common options</u></font>(coreutils)
+* <font color="#5F5FD7"><u style="text-decoration-style:single">Coreutils</u></font>             Core GNU (file, text, shell) utilities.
+<font color="#EF2929">*</font> <font color="#5F5FD7"><u style="text-decoration-style:single">Date input formats</u></font>(coreutils)
+* <font color="#5F5FD7"><u style="text-decoration-style:single">Ed</u></font>                    The GNU line editor
+* <font color="#5F5FD7"><u style="text-decoration-style:single">File permissions</u></font>(coreutils)
+                        Access modes.
+<font color="#EF2929">*</font> <font color="#5F5FD7"><u style="text-decoration-style:single">Finding files</u></font>         Operating on files matching certain criteria.
+<span style="background-color:#BCBCBC"><font color="#2E3436">-UUU:%%--F1  </font></span><span style="background-color:#BCBCBC"><font color="#555753"><b>*info*</b></font></span><span style="background-color:#BCBCBC"><font color="#2E3436"> (dir) </font></span><span style="background-color:#BCBCBC"><font color="#555753"><b>Top</b></font></span><span style="background-color:#BCBCBC"><font color="#2E3436">   Top L2     (Info Narrow) -----------------------</font></span>
+Info file emacs does not exist
+</pre>

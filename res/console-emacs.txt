@@ -1,33 +1,30 @@
 {
-\definecolor{xxxhtmlcolorMLNBOJ}{HTML}{657B83}
-\definecolor{xxxhtmlcolorFDFMEJ}{HTML}{FDF6E3}
-\definecolor{xxxhtmlcolorBCBCBC}{HTML}{BCBCBC}
-\definecolor{xxxhtmlcolorIEJKJM}{HTML}{2E3436}
-\definecolor{xxxhtmlcolorLLLNLJ}{HTML}{555753}
 \setlength{\fboxsep}{0pt}
+\definecolor{clrgfhlid}{HTML}{657b83}\definecolor{clrpnpgod}{HTML}{fdf6e3}\definecolor{clrlmlmlm}{HTML}{bcbcbc}\definecolor{clrcodedg}{HTML}{2e3436}\definecolor{clrkpaaaa}{HTML}{af0000}\definecolor{clrfpfpnh}{HTML}{5f5fd7}\definecolor{clropcjcj}{HTML}{ef2929}\definecolor{clrfffhfd}{HTML}{555753}
 \begin{tcbconsole}
-%*\smash{\colorbox{xxxhtmlcolorMLNBOJ}{{\color{xxxhtmlcolorFDFMEJ}File\space Edit\space Options\space Buffers\space Tools\space Help\space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space \space }}}*)
-Emacs tutorial.  See end for copying conditions.
+%*\smash{\colorbox{clrgfhlid}{\ctmstrut{}\color{clrpnpgod}File\space{}Edit\space{}Options\space{}Buffers\space{}Tools\space{}Info\space{}Help\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}}}*)
+%*\smash{\colorbox{clrlmlmlm}{\ctmstrut{}\color{clrcodedg}\underline{No\space{}next,\space{}prev\space{}or\space{}up\space{}links\space{}\space{}{-}{-}\space{}\space{}This\space{}is\space{}the\space{}top\space{}of\space{}the\space{}INFO\space{}tree\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}\space{}}}}*)
+%*\bfseries{}\color{clrkpaaaa}(dir)Top*)                                                                        
 
-Emacs commands generally involve the CONTROL key (sometimes labeled
-CTRL or CTL) or the META key (sometimes labeled EDIT or ALT).  Rather than
-write that in full each time, we'll use the following abbreviations:
+  This (the Directory node) gives a menu of major topics.
+  Typing "q" exits, "H" lists all Info commands, "d" returns here,
+  "h" gives a primer for first-timers,
+  "mEmacs<Return>" visits the Emacs manual, etc.
 
- C-<chr>  means hold the CONTROL key while typing the character <chr>
-          Thus, C-f would be: hold the CONTROL key and type f.
- M-<chr>  means hold the META or EDIT or ALT key down while typing <chr>.
-          If there is no META, EDIT or ALT key, instead press and release the
-          ESC key and then type <chr>.  We write <ESC> for the ESC key.
+  In Emacs, you can click mouse button 2 on a menu item or cross reference
+  to select it.
 
-Important note: to end the Emacs session, type C-x C-c.  (Two characters.)
-To quit a partially entered command, type C-g.
-The characters ">>" at the left margin indicate directions for you to
-try using a command.  For instance:
+%*\bfseries{}\underline{\ctmstar{}\space{}Menu:}*)
 
->> Now type C-v (View next screen) to move to the next screen.
-	(go ahead, do it by holding down the CONTROL key while typing v).
-        From now on, you should do this again whenever you finish
-        reading the screen.
-%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorIEJKJM}{-}UU{-}:{-}{-}{-}{-}F1\space \space }}}*)%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorLLLNLJ}{\bfseries TUTORIAL\space \space \space \space }}}}*)%*\smash{\colorbox{xxxhtmlcolorBCBCBC}{{\color{xxxhtmlcolorIEJKJM}\space \space \space Top\space L1\space \space \space \space \space (Fundamental)\space {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}}}*)
+%*\bfseries{}\underline{Basics}*)
+* %*\color{clrfpfpnh}\underline{Common\space{}options}*)(coreutils)
+* %*\color{clrfpfpnh}\underline{Coreutils}*)             Core GNU (file, text, shell) utilities.
+%*\color{clropcjcj}\ctmstar{}*) %*\color{clrfpfpnh}\underline{Date\space{}input\space{}formats}*)(coreutils)
+* %*\color{clrfpfpnh}\underline{Ed}*)                    The GNU line editor
+* %*\color{clrfpfpnh}\underline{File\space{}permissions}*)(coreutils)
+                        Access modes.
+%*\color{clropcjcj}\ctmstar{}*) %*\color{clrfpfpnh}\underline{Finding\space{}files}*)         Operating on files matching certain criteria.
+%*\smash{\colorbox{clrlmlmlm}{\ctmstrut{}\color{clrcodedg}{-}UUU:\%\%{-}{-}F1\space{}\space{}}}*)%*\smash{\colorbox{clrlmlmlm}{\ctmstrut{}\bfseries{}\color{clrfffhfd}\ctmstar{}info\ctmstar{}}}*)%*\smash{\colorbox{clrlmlmlm}{\ctmstrut{}\color{clrcodedg}\space{}(dir)\space{}}}*)%*\smash{\colorbox{clrlmlmlm}{\ctmstrut{}\bfseries{}\color{clrfffhfd}Top}}*)%*\smash{\colorbox{clrlmlmlm}{\ctmstrut{}\color{clrcodedg}\space{}\space{}\space{}Top\space{}L2\space{}\space{}\space{}\space{}\space{}(Info\space{}Narrow)\space{}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}}*)
+Info file emacs does not exist
 \end{tcbconsole}
 }
