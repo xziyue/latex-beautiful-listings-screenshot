@@ -117,10 +117,10 @@ int main(){
 \item Declare inline macros for other languages
 
 \begin{tcbsrccode}{text}
-\newmintinline[rubyinline]{ruby}{frame=none, fontsize=\fontsize{10}{10}}
+\definenewinline{rubyinline}{ruby} %{macro name}{language}
 \rubyinline|puts 'Hello, world!'|
 \end{tcbsrccode}
-\newmintinline[rubyinline]{ruby}{frame=none, fontsize=\fontsize{10}{10}}
+\definenewinline{rubyinline}{ruby} %{macro name}{language}
 \rubyinline|puts 'Hello, world!'|
 
 \end{itemize}

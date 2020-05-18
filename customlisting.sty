@@ -12,9 +12,14 @@
 
 \tcbuselibrary{minted, listings}
 
-\newmintinline[cinline]{c}{frame=none, fontsize=\fontsize{10}{10}}
-\newmintinline[rawinline]{text}{frame=none, fontsize=\fontsize{10}{10}}
-\newmintinline[pyinline]{python}{frame=none, fontsize=\fontsize{10}{10}}
+\newcommand{\definenewinline}[2]{
+\edef\mintedargs{[#1]{#2}{frame=none, fontsize=\noexpand\fontsize{10}{10}}}
+\expandafter\newmintinline\mintedargs
+}
+
+\definenewinline{cinline}{c}
+\definenewinline{rawinline}{text}
+\definenewinline{pyinline}{python}
 
 \lstset{
     basicstyle=\ttfamily\selectfont;
