@@ -1,0 +1,329 @@
+% Beautiful code listing/console screenshot solution based on `tcolorbox`, `listing` and `minted`.
+% Author: Alan Xiang (www.alanshawn.com)
+
+\RequirePackage{expl3}
+\RequirePackage{listings}
+\RequirePackage[breakable, skins]{tcolorbox}
+\RequirePackage{minted}
+\RequirePackage{xcolor}
+\RequirePackage{xparse}
+\RequirePackage{stackengine}
+\RequirePackage{amssymb}
+
+\ProvidesExplPackage {l3customlisting} {2020-05-26} {0.1} {Typeset Code Listings and Emulate Console Screenshots with LaTeX Beautifully}
+
+
+
+\ExplSyntaxOff
+
+\tcbuselibrary{minted, listings}
+
+% color definition for different environments
+\definecolor{tcbconsolecf}{HTML}{1aa3ff}
+\definecolor{tcbconsolecb}{HTML}{e6f5ff}
+
+\definecolor{tcbcodecf}{HTML}{00b33c}
+\definecolor{tcbcodecb}{HTML}{e6ffee}
+
+\definecolor{tcbverbatimcf}{HTML}{ff4d94}
+\definecolor{tcbverbatimcb}{HTML}{ffe6f0}
+
+\definecolor{ctmlstgreen}{rgb}{0,0.6,0}
+\definecolor{ctmlstmauve}{rgb}{0.58,0,0.82}
+
+% basic listing style
+\lstdefinestyle{ctmlststyle}{
+    breakatwhitespace=false,
+    breaklines=true,
+    commentstyle=\color{ctmlstgreen},
+    deletekeywords={...},
+    escapeinside={\%*}{*)},
+    extendedchars=true,
+    frame=none,
+    keepspaces=true, 
+    keywordstyle=\color{blue},
+    morekeywords={*,...},
+    numbers=none,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stringstyle=\color{ctmlstmauve},
+    tabsize=2
+}
+
+% tcolorbox styles
+\tcbset{ctmlstlistingstyle/.style=
+    {listing only, enhanced jigsaw, boxsep=0pt, top=0pt, bottom=0pt, left=2mm, right=2mm, boxrule=2pt}
+}
+\tcbset{ctmlstmintedstyle/.style=
+    {listing only, enhanced jigsaw, boxsep=0pt, top=3pt, bottom=3pt, left=8mm, right=2mm, boxrule=2pt}
+}
+
+% options for the minted package in minted-based listings
+\newcommand{\ctmlstmintedoptions}{
+    linenos,
+    autogobble,
+    breaklines,
+    numbersep=3mm,
+    obeytabs,
+    tabsize=2
+}
+
+% inline style
+\newcommand{\ctmlstinlineoptions}{frame=none, fontsize=\fontsize{10}{10}}
+
+% font style for each environment
+\newcommand{\tcbconsolefont}{\linespread{0.85}\fontfamily{DejaVuSansMono-TLF}\fontsize{8}{10}}
+\newcommand{\tcbverbatimfont}{\linespread{0.9}\fontsize{5}{5}\fontfamily{lmtt}\fontseries{lc}}
+\newcommand{\tcbcodefont}{\fontsize{8}{8}}
+
+% custom-assembled unknown character symbol
+\newcommand{\unknownunicodesymbol}{\scalebox{0.7}{\stackinset{c}{}{c}{-.2pt}{%
+  \scalebox{0.8}{\textcolor{white}{\sffamily\bfseries\footnotesize ?}}}{%
+  \rotatebox{45}{$\blacksquare$}}}}
+
+% ensures all color boxes have the same height
+\newcommand{\ctmstrut}{\vphantom{\"{A}gp}}
+
+% a way to escape star to avoid collision
+\newcommand{\ctmstar}{*}
+
+\ExplSyntaxOn
+
+\makeatletter
+
+
+\cs_set:Npn \ctmlst_newinline:nnn #1#2#3 {
+\newmintinline[#1]{#2}{#3}
+}
+
+\cs_set:Npn \ctmlst_renewinline:Nnnn #1#2#3#4 {
+\let#1\undefined
+\newmintinline[#2]{#3}{#4}
+}
+
+\cs_generate_variant:Nn \ctmlst_newinline:nnn {nnV}
+\cs_generate_variant:Nn \ctmlst_renewinline:Nnnn {cnnV}
+
+\newcommand{\ctmlstnewinline}[2]{
+\ctmlst_newinline:nnV {#1} {#2} {\ctmlstinlineoptions}
+}
+
+\newcommand{\ctmlstrenewinline}[2]{
+\ctmlst_renewinline:cnnV {#1} {#1} {#2} {\ctmlstinlineoptions}
+}
+
+% command to declare new environments (tcblistings)
+% #1: name of the environment
+% #2: arguments
+\cs_set:Npn \tcb_newlisting:nnn #1#2#3 {
+    \newtcblisting{#1}[#2]{#3}
+}
+
+% command to declare new input commands
+% #1: name of the environment
+% #2: number of arguments
+% #2: arguments
+\cs_set:Npn \tcb_newinputlisting:Nnn #1#2#3 {
+    \newtcbinputlisting{#1}[#2]{#3}
+}
+
+% declare variations
+\cs_generate_variant:Nn \tcb_newlisting:nnn {VnV}
+\cs_generate_variant:Nn \tcb_newinputlisting:Nnn {cnV}
+
+
+% command to generate environment names
+\cs_set:Npn \__ctmlst_envname:n #1 {tcb#1}
+
+% command to generate listing input names
+\cs_set:Npn \__ctmlst_inputcmdname:n #1 {tcbinput#1}
+
+% command to generate title for tcblisting
+\cs_set:Npn \__ctmlst_envtitle:n #1 {\exp_not:N\itshape \tl_upper_case:n #1}
+
+% command to generate font name given name
+\cs_set:Npn \__ctmlst_envfontname:n #1 {tcb#1font}
+
+% command to generate internal input command name (breakable)
+\cs_set:Npn \__ctmlst_internal_input_star:n #1 {ctmlst@@input#1star}
+
+% command to generate internal input command name (unbreakable)
+\cs_set:Npn \__ctmlst_internal_input:n #1 {ctmlst@@input#1}
+
+% command to find the correct userinputcmd based on number of parameters
+\cs_set:Npn \__ctmlst_process_userinputcmd_name:n #1 {
+    __ctmlst_new_userinputcmd_\char_generate:nn {\int_eval:n {#1 + `\a}} {11}:ccc
+}
+
+% command to generate style list for listing-based tcblisting
+% #1: name of the listing (no star involved, e.g. console, code, verbatim, etc.)
+% #2: title of the listing
+% #3: csname of font style
+% #4: additional parameters
+\cs_set:Npn \__ctmlst_listingbased_style:nnNn #1#2#3#4 {
+    ctmlstlistingstyle,
+    colback=#1cb, 
+    colframe=#1cf, 
+    title=\exp_not:n{#2},
+    listing\space options={style=ctmlststyle, 
+        backgroundcolor=\exp_not:N\color{#1cb}, 
+        basicstyle=\exp_not:n{#3\selectfont}},
+    #4
+}
+
+\cs_generate_variant:Nn \__ctmlst_listingbased_style:nnNn {VVcn}
+
+% command to generate style list for minted-based tcbinputlisting
+% #1: name of the listing (no star involved, e.g. console, code, verbatim, etc.)
+% #2: title of the listing
+% #3: csname of font style
+% #4: additional parameters
+\cs_set:Npn \__ctmlst_mintedbased_style:nnNn #1#2#3#4 {
+    ctmlstmintedstyle,
+    listing\space engine=minted,
+    colback=#1cb, 
+    colframe=#1cf, 
+    title=\exp_not:n{#2},
+    minted\space options={
+        \ctmlstmintedoptions,
+        fontsize=\exp_not:n{#3\selectfont}
+    },
+    #4
+}
+
+\cs_generate_variant:Nn \__ctmlst_mintedbased_style:nnNn {VVcn}
+
+
+% command to declare (starred) input environments for user (0 arg)
+% #1: command name
+% #2: command called when starred
+% #3: command called when not starred
+\cs_set:Npn \__ctmlst_new_userinputcmd_a:NNN #1#2#3 {
+    \DeclareDocumentCommand{#1}{sm}{
+        \IfBooleanTF{##1}{
+            #2
+        }{
+            #3
+        }
+    }
+}
+
+% command to declare (starred) input environments for user (1 arg)
+% #1: command name
+% #2: command called when starred
+% #3: command called when not starred
+\cs_set:Npn \__ctmlst_new_userinputcmd_b:NNN #1#2#3 {
+    \DeclareDocumentCommand{#1}{sm}{
+        \IfBooleanTF{##1}{
+            #2{##2}
+        }{
+            #3{##2}
+        }
+    }
+}
+
+% command to declare (starred) input environments for user (2 args)
+% #1: command name
+% #2: command called when starred
+% #3: command called when not starred
+\cs_set:Npn \__ctmlst_new_userinputcmd_c:NNN #1#2#3 {
+    \DeclareDocumentCommand{#1}{smm}{
+        \IfBooleanTF{##1}{
+            #2{##2}{##3}
+        }{
+            #3{##2}{##3}
+        }
+    }
+}
+
+% command to declare (starred) input environments for user (3 args)
+% #1: command name
+% #2: command called when starred
+% #3: command called when not starred
+\cs_set:Npn \__ctmlst_new_userinputcmd_d:NNN #1#2#3 {
+    \DeclareDocumentCommand{#1}{smm}{
+        \IfBooleanTF{##1}{
+            #2{##2}{##3}{##4}
+        }{
+            #3{##2}{##3}{##4}
+        }
+    }
+}
+
+\cs_generate_variant:Nn \__ctmlst_new_userinputcmd_a:NNN {ccc}
+\cs_generate_variant:Nn \__ctmlst_new_userinputcmd_b:NNN {ccc}
+\cs_generate_variant:Nn \__ctmlst_new_userinputcmd_c:NNN {ccc}
+\cs_generate_variant:Nn \__ctmlst_new_userinputcmd_d:NNN {ccc}
+
+% get style given environment name (saved in \g__cur_style)
+% #1: name of the environment
+% #2: style generator (which takes 4 arguments)
+% #3: additional parameters
+\cs_set:Npn \__ctmlst_process_style:nNn #1#2#3 {
+    \tl_set:Nx \l__process_envname_tl {\__ctmlst_envname:n {#1}}
+    \tl_set:Nx \l__process_envtitle_tl {\__ctmlst_envtitle:n {#1}}
+    \tl_set:Nx \l__process_envfontname_tl {\__ctmlst_envfontname:n {#1}}
+    \tl_gset:Nx \g__cur_style {#2 {\l__process_envname_tl} {\l__process_envtitle_tl} {\l__process_envfontname_tl} {#3}}
+}
+
+% declare new listing environments
+% #1: name of the listing
+% #2: style generator (which takes 4 arguments)
+% #3: number of parameters
+% #4: additional style for normal environment
+% #5: additional style for starred environment
+\cs_set:Npn \__ctmlst_new_listings:nNnnn #1#2#3#4#5 {    
+    \tl_set:Nx \l__envname_tl {\__ctmlst_envname:n {#1}}
+    \tl_set:Nx \l__starenvname_tl {\__ctmlst_envname:n {#1} *}
+
+    \__ctmlst_process_style:nNn {#1} {#2} {#4}
+    \tcb_newlisting:VnV {\l__envname_tl} {#3} {\g__cur_style}
+    
+    \__ctmlst_process_style:nNn {#1} {#2} {#5}
+    \tcb_newlisting:VnV {\l__starenvname_tl} {#3} {\g__cur_style}
+}
+
+
+% declare new input command
+% #1: name of the listing
+% #2: style generator (which takes 4 arguments)
+% #3: number of parameters
+% #4: additional style for normal command
+% #5: additional style for starred command
+\cs_set:Npn \__ctmlst_new_inputcmd:nNnnn #1#2#3#4#5 {
+    % get input command name
+    \tl_set:Nx \l__inputcmdname_tl {\__ctmlst_inputcmdname:n {#1}}
+    
+    % internal command names
+    \tl_set:Nx \l__inputcmd_tl {\__ctmlst_internal_input:n {#1}}  %normal
+    \tl_set:Nx \l__starinputcmd_tl {\__ctmlst_internal_input_star:n {#1}}  % starred
+
+    % normal command
+    \__ctmlst_process_style:nNn {#1} {#2} {#4}
+    \tcb_newinputlisting:cnV  {\l__inputcmd_tl} {#3} {\g__cur_style}
+    
+    % starred command
+    \__ctmlst_process_style:nNn {#1} {#2} {#5}
+    \tcb_newinputlisting:cnV  {\l__starinputcmd_tl} {#3} {\g__cur_style}
+    
+    \tl_set:Nx \l_userinputcmd {\__ctmlst_process_userinputcmd_name:n {#3}}
+    \use:c{\l_userinputcmd} {\l__inputcmdname_tl} {\l__starinputcmd_tl} {\l__inputcmd_tl}
+}
+
+\makeatother
+
+
+% pre-defined environments/commands
+\__ctmlst_new_listings:nNnnn {console} {\__ctmlst_listingbased_style:VVcn} {0} {breakable} {}
+\__ctmlst_new_listings:nNnnn {verbatim} {\__ctmlst_listingbased_style:VVcn} {0} {breakable} {}
+
+\__ctmlst_new_inputcmd:nNnnn {console} {\__ctmlst_listingbased_style:VVcn} {1} {breakable, listing\space file=##1} {listing\space file=##1}
+\__ctmlst_new_inputcmd:nNnnn {verbatim} {\__ctmlst_listingbased_style:VVcn} {1} {breakable, listing\space file=##1} {listing\space file=##1}
+
+\__ctmlst_new_listings:nNnnn {code} {\__ctmlst_mintedbased_style:VVcn} {1} {breakable, minted\space language=##1} {minted\space language=##1}
+\__ctmlst_new_inputcmd:nNnnn {code} {\__ctmlst_mintedbased_style:VVcn} {2} {breakable, minted\space language=##1, listing\space file=##2} {minted\space language=##1, listing\space file=##2}
+
+\ctmlstnewinline{rawinline}{text}
+\ctmlstnewinline{cinline}{c}
+\ctmlstnewinline{pyinline}{python}

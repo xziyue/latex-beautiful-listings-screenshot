@@ -185,6 +185,10 @@ class LaTeXify:
 
     def _escape_unicodechar(self, uc):
         assert isinstance(uc, UnicodeChar)
+
+        if ord(uc.c) == 0xfffd:
+        	return r'\unknownunicodesymbol'
+        
         if self.unicode_escape_mode == 'hex':
             return r'\unichar{{"{:x}}}'.format(ord(uc.c))
         elif self.unicode_escape_mode == 'dec':

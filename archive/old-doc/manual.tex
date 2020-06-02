@@ -1,7 +1,8 @@
 \documentclass[letterpaper, 11pt, DIV=11]{scrartcl}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{../l3customlisting}
+\usepackage{../customlisting}
+\usepackage{../customlisting-unicode}
 \usepackage[american]{babel}
 \usepackage{mathptmx}
 \usepackage{graphicx}
@@ -11,16 +12,17 @@
 \usepackage{hyperref}
 
 
+
 \addtokomafont{disposition}{\rmfamily}
 \author{\href{https://www.alanshawn.com}{Ziyue ``Alan'' Xiang}}
-\title{\texttt{l3customlisting}\\Typeset Code Listings and Emulate Console Screenshots with \LaTeX\  Beautifully\\ {\small \url{https://github.com/xziyue/latex-beautiful-listings-screenshot}}}
+\title{Typeset Code Listings and Emulate Console Screenshots with \LaTeX\  Beautifully\\ {\small \url{https://github.com/xziyue/latex-beautiful-listings-screenshot}}}
 \date{\today}
 
 
 \newmintinline[texinline]{latex}{frame=none, fontsize=\fontsize{10}{10}}
 
 \newtcblisting{tcbsrccode}[1]{
-    ctmlstmintedstyle,listing engine=minted, breakable, colback=black!5, boxsep=0pt, colframe=black!30, minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=2,fontsize=\fontsize{8}{8}},
+    tcbcodebasestyle,listing engine=minted, breakable, colback=black!5, boxsep=0pt, colframe=black!30, minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=2,fontsize=\fontsize{8}{8}},
     minted language=#1
 }
 
@@ -40,13 +42,14 @@
 
 \pagenumbering{arabic}
 
-This is the \LaTeX 3 version of the old \rawinline|customlisting| package, which allows users to control the styles and declare new listing environments more easily. The old package can be found in \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/tree/master/archive}{\rawinline|archive|} folder.
+
+\textbf{This is the document for old version and will no longer be updated.}
 
 \section{Quick Start Guide}
 
 \begin{enumerate}
-\item Download \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/l3customlisting.sty}{\rawinline|l3customlisting.sty|} and place it in your project folder.
-\item Load the package with \texinline|\usepackage{l3customlisting}|.
+\item Download \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/customlisting.sty}{\rawinline|customlisting.sty|} and place it in your project folder.
+\item Load the package with \texinline|\usepackage{customlisting}|.
 \item If you are using pdf\LaTeX, make sure to include \texinline|\usepackage[T1]{fontenc}| in the preamble. Otherwise, symbols like \textasciitilde\ may not be displayed correctly.
 \end{enumerate}
 
@@ -98,9 +101,9 @@ int main(){
 \item Typeset source code from external source files
 
 \begin{tcbsrccode}{text}
-\tcbinputcode*{cpp}{../res/example.cpp}
+\tcbinputcode*{cpp}{../../res/example.cpp}
 \end{tcbsrccode}
-\tcbinputcode*{cpp}{../res/example.cpp}
+\tcbinputcode*{cpp}{../../res/example.cpp}
 
 \item Inline source code
 
@@ -116,10 +119,10 @@ int main(){
 \item Declare inline macros for other languages
 
 \begin{tcbsrccode}{text}
-\ctmlstnewinline{rubyinline}{ruby} %{macro name}{language}
+\definenewinline{rubyinline}{ruby} %{macro name}{language}
 \rubyinline|puts 'Hello, world!'|
 \end{tcbsrccode}
-\ctmlstnewinline{rubyinline}{ruby} %{macro name}{language}
+\definenewinline{rubyinline}{ruby} %{macro name}{language}
 \rubyinline|puts 'Hello, world!'|
 
 \end{itemize}
@@ -152,9 +155,9 @@ __________________________  ___
 \item Typeset generic verbatims from external files
 
 \begin{tcbsrccode}{text}
-\tcbinputverbatim*{../res/wireshark.txt}
+\tcbinputverbatim*{../../res/wireshark.txt}
 \end{tcbsrccode}
-\tcbinputverbatim*{../res/wireshark.txt}
+\tcbinputverbatim*{../../res/wireshark.txt}
 
 \end{itemize}
 
@@ -165,7 +168,7 @@ Typesetting console screenshots is a bit trickier. By far, it can be done most c
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.6\linewidth]{../res/ubuntu-html}
+\includegraphics[width=0.6\linewidth]{../../res/ubuntu-html}
 \caption{Converting terminal output to HTML on Ubuntu 18.04+.}
 \label{fig:ubuntu-conv}
 \end{figure} 
@@ -179,13 +182,13 @@ Generally speaking, one needs to fulfill the following requirements:
 To typeset this screenshot in \LaTeX, one needs to run \rawinline|html2latex| and paste the HTML in the upper text box. By pressing the ``Convert`` button, the corresponding \LaTeX\ code will appear in the lower text box, as it is shown in Figure \ref{fig:python-html2latex}. The result is shown as below.
 
 \begin{tcbsrccode}{text}
-\input{../res/console-dev.txt}
+\input{../../res/console-dev.txt}
 \end{tcbsrccode}
-\input{../res/console-dev.txt}
+\input{../../res/console-dev.txt}
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.7\linewidth]{../res/html2latex}
+\includegraphics[width=0.7\linewidth]{../../res/html2latex}
 \caption{Using \rawinline|html2latex| to convert HTML to \LaTeX.}
 \label{fig:python-html2latex}
 \end{figure} 
@@ -193,15 +196,15 @@ To typeset this screenshot in \LaTeX, one needs to run \rawinline|html2latex| an
 Other classic command-line tools, such as \rawinline|emacs| and \rawinline|htop|, are supported as well.
 
 \begin{tcbsrccode}{text}
-\input{../res/console-emacs.txt}
+\input{../../res/console-emacs.txt}
 \end{tcbsrccode}
-\input{../res/console-emacs.txt}
+\input{../../res/console-emacs.txt}
 
 
 \begin{tcbsrccode}{text}
-\input{../res/console-htop.txt}
+\input{../../res/console-htop.txt}
 \end{tcbsrccode}
-\input{../res/console-htop.txt}
+\input{../../res/console-htop.txt}
 
 \subsection{Unicode Support}
 
@@ -212,15 +215,18 @@ As for the most commonly used pdf\LaTeX, special treatment is needed. The soluti
 
 \begin{enumerate}
 \item Make sure to include \texinline|\usepackage[utf8x]{inputenc}| in your preamble.
+\item Put \href{https://github.com/xziyue/latex-beautiful-listings-screenshot/blob/master/customlisting-unicode.sty}{\rawinline|customlisting-unicode.sty|} into your project folder and load it with 
+
+\texinline|\usepackage{customlisting-unicode}|.
 \item In \rawinline|html2latex|, make sure ``XeLaTeX`` is unchecked.
 \end{enumerate}
 
 A pdf\LaTeX\ example is shown as below. 
 
 \begin{tcbsrccode}{text}
-\input{../res/console-unicode.txt}
+\input{../../res/console-unicode.txt}
 \end{tcbsrccode}
-\input{../res/console-unicode.txt}
+\input{../../res/console-unicode.txt}
 
 However, keep in mind that \textbf{this Unicode support is extremely limited}: many characters are simply unavailable in pdf\LaTeX. Many packages are not compatible with \texinline|\usepackage[utf8x]{inputenc}|. One most notable example is \rawinline|biblatex|. Therefore, for better Unicode support, one should use \XeLaTeX\ or \LuaLaTeX.
 
@@ -272,160 +278,5 @@ end
 \end{mylisting}
 \listoflstcaps
 
-
-\section{Customize Listings}
-
-\subsection{Changing appearance of existing listings}
-
-\subsubsection{Common styles}
-
-Common styles can be updated with \texinline|\tcbset|.
-
-\begin{itemize}
-\item The common style of \rawinline|listing|-based environments are defined by
-\begin{tcbsrccode}{latex}
-\tcbset{ctmlstlistingstyle/.style=
-    {listing only, enhanced jigsaw, boxsep=0pt, top=0pt, bottom=0pt, left=2mm, right=2mm, boxrule=2pt}
-}
-\end{tcbsrccode}
-\item The common style of \rawinline|minted|-based environments are defined by
-\begin{tcbsrccode}{latex}
-\tcbset{ctmlstmintedstyle/.style=
-    {listing only, enhanced jigsaw, boxsep=0pt, top=3pt, bottom=3pt, left=8mm, right=2mm, boxrule=2pt}
-}
-\end{tcbsrccode}
-
-\end{itemize}
-
-\subsubsection{Color and font}
-
-Denote name of environment name by \rawinline|<name>|:
-\begin{itemize}
-\item The frame color is given by \rawinline|tcb<name>cf| (modify with \texinline|\definecolor|)
-\item The background color is given by \rawinline|tcb<name>cb|
-\item The font style is given by \rawinline|\tcb<name>font| (modify with \texinline|\renewcommand|)
-\end{itemize}
-
-For example, to change the background color and font of \rawinline|tcbverbatim|, we can simply run:
-\begin{tcbsrccode}{latex}
-\definecolor{tcbverbatimcb}{HTML}{efefef}
-\renewcommand{\tcbverbatimfont}{\linespread{0.9}\fontsize{8}{8}\fontfamily{lmr}}
-\begin{tcbverbatim}
-modified verbatim
-\end{tcbverbatim}
-\end{tcbsrccode}
-
-\definecolor{tcbverbatimcb}{HTML}{efefef}
-\renewcommand{\tcbverbatimfont}{\linespread{0.9}\fontsize{8}{8}\fontfamily{lmr}}
-\begin{tcbverbatim}
-modified verbatim
-\end{tcbverbatim}
-
-
-\subsection{Changing style of existing inline commands}
-
-Inline styles are defined in \texinline|\ctmlstinlineoptions|. After updating them, one should refresh macro definitions with \texinline|\ctmlstrenewinline|.
-\begin{tcbsrccode}{latex}
-\cinline|int main();|
-\renewcommand{\ctmlstinlineoptions}{frame=none, fontsize=\fontsize{15}{15}}
-\ctmlstrenewinline{cinline}{c}
-\cinline|int main();|
-\end{tcbsrccode}
-
-\cinline|int main();|
-\renewcommand{\ctmlstinlineoptions}{frame=none, fontsize=\fontsize{15}{15}}
-\ctmlstrenewinline{cinline}{c}
-\cinline|int main();|
-
-
-\subsection{Declaring new listing environments/commands}
-
-To declare a new \rawinline|listing|-based environment (denote the name by \rawinline|<name>|), one needs declare the following variables:
-
-\begin{itemize}
-\item Frame color \rawinline|tcb<name>cf|
-\item Background color \rawinline|tcb<name>cb|
-\item Font style \rawinline|\tcb<name>font|
-\end{itemize}
-
-For example, if one wants to define a new environment called \rawinline|tcbtext|, the following commands should be called:
-
-\begin{tcbsrccode}{text}
-\definecolor{tcbtextcf}{HTML}{000000}
-\definecolor{tcbtextcb}{HTML}{efefef}
-\newcommand{\tcbtextfont}{\fomtfamily{lmr}\fontsize{10}{10}}
-\ExplSyntaxOn
-\__ctmlst_new_listings:nNnnn {text} {\__ctmlst_listingbased_style:VVcn} {0} {breakable} {}
-\ExplSyntaxOff
-
-\begin{tcbtext}
-Sample text.
-\end{tcbtext}
-\end{tcbsrccode}
-
-The output is shown as below.
-
-\definecolor{tcbtextcf}{HTML}{000000}
-\definecolor{tcbtextcb}{HTML}{efefef}
-\newcommand{\tcbtextfont}{\fontfamily{lmr}\fontsize{10}{10}}
-\ExplSyntaxOn
-\__ctmlst_new_listings:nNnnn {text} {\__ctmlst_listingbased_style:VVcn} {0} {breakable} {}
-\ExplSyntaxOff
-
-\begin{tcbtext}
-Sample text.
-\end{tcbtext}
-
-For more information on \rawinline|\__ctmlst_new_listings:nNnnn|, please refer to the comments.
-
-\subsection{More details}
-
-For more control over new environments/commands, one needs to create a \emph{style generator}. There are two existing style generators, one for \rawinline|listing|-based environments and another for \rawinline|minted|-based environments. Their definitions are shown below. 
-
-\begin{tcbsrccode}{text}
-% command to generate style list for listing-based tcblisting
-% #1: name of the listing (no star involved, e.g. console, code, verbatim, etc.)
-% #2: title of the listing
-% #3: csname of font style
-% #4: additional parameters
-\cs_set:Npn \__ctmlst_listingbased_style:nnNn #1#2#3#4 {
-    ctmlstlistingstyle,
-    colback=#1cb, 
-    colframe=#1cf, 
-    title=\exp_not:n{#2},
-    listing\space options={style=ctmlststyle, 
-        backgroundcolor=\exp_not:N\color{#1cb}, 
-        basicstyle=\exp_not:n{#3\selectfont}},
-    #4
-}
-
-% command to generate style list for minted-based tcbinputlisting
-% #1: name of the listing (no star involved, e.g. console, code, verbatim, etc.)
-% #2: title of the listing
-% #3: csname of font style
-% #4: additional parameters
-\cs_set:Npn \__ctmlst_mintedbased_style:nnNn #1#2#3#4 {
-    ctmlstmintedstyle,
-    listing\space engine=minted,
-    colback=#1cb, 
-    colframe=#1cf, 
-    title=\exp_not:n{#2},
-    minted\space options={
-        \ctmlstmintedoptions,
-        fontsize=\exp_not:n{#3\selectfont}
-    },
-    #4
-}
-\end{tcbsrccode}
-
-The macros to declare new environments/commands takes a style generator and additional parameters as inputs.
-
-\begin{tcbsrccode}{text}
-\__ctmlst_new_listings:nNnnn {console} {\__ctmlst_listingbased_style:VVcn} {0} {breakable} {}
-\__ctmlst_new_inputcmd:nNnnn {console} {\__ctmlst_listingbased_style:VVcn} {1} {breakable, listing\space file=##1} {listing\space file=##1}
-
-\__ctmlst_new_listings:nNnnn {code} {\__ctmlst_mintedbased_style:VVcn} {1} {breakable, minted\space language=##1} {minted\space language=##1}
-\__ctmlst_new_inputcmd:nNnnn {code} {\__ctmlst_mintedbased_style:VVcn} {2} {breakable, minted\space language=##1, listing\space file=##2} {minted\space language=##1, listing\space file=##2}
-\end{tcbsrccode}
 
 \end{document}

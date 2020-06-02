@@ -1,0 +1,150 @@
+% Beautiful code listing/console screenshot solution based on `tcolorbox`, `listing` and `minted`.
+% Author: Alan Xiang (www.alanshawn.com)
+
+\RequirePackage{listings}
+\RequirePackage[breakable, skins]{tcolorbox}
+\RequirePackage{minted}
+\RequirePackage{xcolor}
+\RequirePackage{xparse}
+
+\newcommand{\ctmstrut}{\vphantom{\"{A}gp}}
+\newcommand{\ctmstar}{*}
+
+
+
+% basic style for inline listings
+\newcommand{\ctminlineparam}{frame=none, fontsize=\noexpand\fontsize{10}{10}}
+
+% font style for terminal
+\newcommand{\ctmconsoleparam}{\linespread{0.85}\fontfamily{DejaVuSansMono-TLF}\fontsize{8}{10}\selectfont}
+
+
+\tcbuselibrary{minted, listings}
+
+\newcommand{\definenewinline}[2]{
+\edef\mintedargs{[#1]{#2}{\ctminlineparam}}
+\expandafter\newmintinline\mintedargs
+}
+
+\definenewinline{cinline}{c}
+\definenewinline{rawinline}{text}
+\definenewinline{pyinline}{python}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\definecolor{clrconsoleframe}{HTML}{1aa3ff}
+\definecolor{clrconsoleback}{HTML}{e6f5ff}
+
+\lstdefinestyle{lstbasestyle}{
+        	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+        	breaklines=true,                 % sets automatic line breaking
+        	captionpos=b,                    % sets the caption-position to bottom
+        	commentstyle=\color{mygreen},    % comment style
+        	deletekeywords={...},            % if you want to delete keywords from the given language
+        	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+        	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+        	frame=none,	                   % adds a frame around the code
+            %rulesepcolor=\color{black},
+        	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+        	keywordstyle=\color{blue},       % keyword style
+        	%language=none,                 % the language of the code
+        	morekeywords={*,...},            % if you want to add more keywords to the set
+        	numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+        	numbersep=5pt,                   % how far the line-numbers are from the code
+            %framerule=3pt,
+        	numberstyle=\color{mygray}\fontsize{7}{7}\selectfont, % the style that is used for the line-numbers
+        	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+        	showstringspaces=false,          % underline spaces within strings only
+        	showtabs=false,                  % show tabs within strings adding particular underscores
+        	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+        	stringstyle=\color{mymauve},     % string literal style
+        	tabsize=2,	                   % sets default tabsize to 2 spaces
+        	%title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\tcbset{tcblstbasestyle/.style={
+listing only, enhanced jigsaw, boxsep=0pt, top=0pt, bottom=0pt, left=2mm, right=2mm, boxrule=2pt
+}
+}
+
+\tcbset{tcbcodebasestyle/.style={
+listing only, enhanced jigsaw, boxsep=0pt, left=8mm, top=3pt, bottom=3pt, right=2mm, boxrule=2pt
+}
+}
+
+\newtcblisting{tcbconsole}{
+tcblstbasestyle, breakable, colback=clrconsoleback, colframe=clrconsoleframe,title={\itshape Terminal}, listing options={style=lstbasestyle, backgroundcolor=\color{clrconsoleback}, basicstyle=\linespread{0.85}\fontfamily{DejaVuSansMono-TLF}\fontsize{8}{10}\selectfont}
+}
+
+\newtcblisting{tcbconsole*}{
+tcblstbasestyle, colback=clrconsoleback, colframe=clrconsoleframe,title={\itshape Terminal}, listing options={style=lstbasestyle, backgroundcolor=\color{clrconsoleback}, basicstyle=\linespread{0.85}\fontfamily{DejaVuSansMono-TLF}\fontsize{8}{10}\selectfont}
+}
+
+
+\newtcbinputlisting{\tcbinputconsolebase}[2]{
+tcblstbasestyle, colback=clrconsoleback, colframe=clrconsoleframe,title={\itshape Terminal}, listing options={style=lstbasestyle, backgroundcolor=\color{clrconsoleback}, basicstyle=\linespread{0.85}\fontfamily{DejaVuSansMono-TLF}\fontsize{8}{10}\selectfont}, listing file=#1, breakable=#2
+}
+
+\DeclareDocumentCommand{\tcbinputconsole}{sm}{
+\IfBooleanTF{#1}{
+\tcbinputconsolebase{#2}{false}
+}{
+\tcbinputconsolebase{#2}{true}
+}
+}
+
+
+\definecolor{clrverbframe}{HTML}{ff4d94}
+\definecolor{clrverbback}{HTML}{ffe6f0}
+
+\newtcblisting{tcbverbatim}{
+tcblstbasestyle, breakable, colback=clrverbback, colframe=clrverbframe, title={\itshape Verbatim}, listing options={style=lstbasestyle, backgroundcolor=\color{clrverbback}, basicstyle=\linespread{0.9}\fontsize{5}{5}\fontfamily{lmtt}\fontseries{lc}\selectfont}
+}
+
+
+\newtcblisting{tcbverbatim*}{
+tcblstbasestyle, colback=clrverbback, colframe=clrverbframe, title={\itshape Verbatim}, listing options={style=lstbasestyle, backgroundcolor=\color{clrverbback}, basicstyle=\linespread{0.9}\fontsize{5}{5}\fontfamily{lmtt}\fontseries{lc}\selectfont}
+}
+
+
+\newtcbinputlisting{\tcbinputverbatimbase}[2]{
+tcblstbasestyle, breakable=#2, colback=clrverbback, colframe=clrverbframe, title={\itshape Verbatim}, listing options={style=lstbasestyle, backgroundcolor=\color{clrverbback}, basicstyle=\linespread{0.9}\fontsize{5}{5}\fontfamily{lmtt}\fontseries{lc}\selectfont}, listing file=#1
+}
+
+\DeclareDocumentCommand{\tcbinputverbatim}{sm}{
+\IfBooleanTF{#1}{
+\tcbinputverbatimbase{#2}{false}
+}{
+\tcbinputverbatimbase{#2}{true}
+}
+}
+
+\definecolor{clrcodeframe}{HTML}{00b33c}
+\definecolor{clrcodeback}{HTML}{e6ffee}
+
+
+\newtcblisting{tcbcode}[1]{
+tcbcodebasestyle, listing engine=minted, breakable, colback=clrcodeback,colframe=clrcodeframe, title={\hspace*{-6mm}\itshape Code}, minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=2,fontsize=\fontsize{8}{8}}, minted language=#1
+}
+
+\newtcblisting{tcbcode*}[1]{
+tcbcodebasestyle, listing engine=minted, colback=clrcodeback,colframe=clrcodeframe, title={\hspace*{-6mm}\itshape Code}, minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=2,fontsize=\fontsize{8}{8}}, minted language=#1
+}
+
+
+\newtcbinputlisting{\tcbinputcodebase}[3]{
+tcbcodebasestyle, listing engine=minted, breakable=#3, colback=clrcodeback, colframe=clrcodeframe, title={\hspace*{-6mm}\itshape Code}, minted options={linenos,autogobble,breaklines, numbersep=3mm, obeytabs, tabsize=2,fontsize=\fontsize{8}{8}}, minted language=#1, listing file=#2
+}
+
+
+\DeclareDocumentCommand{\tcbinputcode}{smm}{
+\IfBooleanTF{#1}{
+\tcbinputcodebase{#2}{#3}{false}
+}{
+\tcbinputcodebase{#2}{#3}{true}
+}
+}

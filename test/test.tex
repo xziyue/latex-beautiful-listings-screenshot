@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{../l3customlisting}
+\usepackage[american]{babel}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{metalogo}
+\usepackage{caption}
+\usepackage{hyperref}
+
+\begin{document}
+
+stuff here
+
+\ctmlstnewinline{cinline}{c}
+\cinline|int main()|
+
+\renewcommand{\ctmlstinlineoptions}{frame=none, fontsize=\fontsize{15}{15}}
+\ctmlstrenewinline{cinline}{c}
+\cinline|int main()|
+
+%\cinline|int main()|
+
+\begin{tcbconsole*}
+content...
+\end{tcbconsole*}
+
+\begin{tcbconsole}
+content...f
+\end{tcbconsole}
+
+\begin{tcbverbatim}
+content...f
+\end{tcbverbatim}
+
+\begin{tcbcode}{c}
+int main()
+\end{tcbcode}
+
+\tcbinputcode*{latex}{test.tex}
+
+\end{document}
