@@ -322,6 +322,7 @@ modified verbatim
 \end{tcbverbatim}
 
 
+
 \subsection{Changing style of existing inline commands}
 
 Inline styles are defined in \texinline|\ctmlstinlineoptions|. After updating them, one should refresh macro definitions with \texinline|\ctmlstrenewinline|.
@@ -409,7 +410,7 @@ For more control over new environments/commands, one needs to create a \emph{sty
     listing\space engine=minted,
     colback=#1cb, 
     colframe=#1cf, 
-    title=\exp_not:n{#2},
+    title={\exp_not:n{\hspace*{-6mm}}\exp_not:n{#2}},
     minted\space options={
         \ctmlstmintedoptions,
         fontsize=\exp_not:n{#3\selectfont}
@@ -427,5 +428,65 @@ The macros to declare new environments/commands takes a style generator and addi
 \__ctmlst_new_listings:nNnnn {code} {\__ctmlst_mintedbased_style:VVcn} {1} {breakable, minted\space language=##1} {minted\space language=##1}
 \__ctmlst_new_inputcmd:nNnnn {code} {\__ctmlst_mintedbased_style:VVcn} {2} {breakable, minted\space language=##1, listing\space file=##2} {minted\space language=##1, listing\space file=##2}
 \end{tcbsrccode}
+
+
+\subsection{Changing \texttt{minted} styles}
+
+The style of \rawinline|minted| package is specified by \texinline|\ctmlstmintedoptions| macro.
+
+\begin{tcbsrccode}{latex}
+    \newcommand{\ctmlstmintedoptions}{
+        linenos,
+        autogobble,
+        breaklines,
+        numbersep=3mm,
+        obeytabs,
+        tabsize=2
+    }
+\end{tcbsrccode}
+
+To change the option for new environments, one can modify this macro directly.
+
+\begin{tcbsrccode}{text}
+\renewcommand{\ctmlstmintedoptions}{
+    linenos,
+    autogobble,
+    breaklines,
+    numbersep=3mm,
+    obeytabs,
+    tabsize=2,
+    showspaces,
+    showtabs
+}
+
+\definecolor{tcbnewcodecf}{HTML}{000000}
+\definecolor{tcbnewcodecb}{HTML}{efefef}
+\newcommand{\tcbnewcodefont}{\fontsize{9}{9}}
+\ExplSyntaxOn
+\__ctmlst_new_listings:nNnnn {newcode} {\__ctmlst_mintedbased_style:VVcn} {1} {breakable, minted\space language=##1} {minted\space language=##1}
+\ExplSyntaxOff
+\end{tcbsrccode}
+
+\renewcommand{\ctmlstmintedoptions}{
+    linenos,
+    autogobble,
+    breaklines,
+    numbersep=3mm,
+    obeytabs,
+    tabsize=2,
+    showspaces,
+    showtabs
+}
+
+\definecolor{tcbnewcodecf}{HTML}{000000}
+\definecolor{tcbnewcodecb}{HTML}{efefef}
+\newcommand{\tcbnewcodefont}{\fontsize{9}{9}}
+\ExplSyntaxOn
+\__ctmlst_new_listings:nNnnn {newcode} {\__ctmlst_mintedbased_style:VVcn} {1} {breakable, minted\space language=##1} {minted\space language=##1}
+\ExplSyntaxOff
+
+\begin{tcbnewcode}{c}
+int   main();
+\end{tcbnewcode}
 
 \end{document}

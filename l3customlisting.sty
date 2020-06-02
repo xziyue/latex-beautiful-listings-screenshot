@@ -140,7 +140,7 @@
 \cs_set:Npn \__ctmlst_inputcmdname:n #1 {tcbinput#1}
 
 % command to generate title for tcblisting
-\cs_set:Npn \__ctmlst_envtitle:n #1 {\exp_not:N\itshape \tl_upper_case:n #1}
+\cs_set:Npn \__ctmlst_envtitle:n #1 {\exp_not:n{\itshape} \tl_upper_case:n #1}
 
 % command to generate font name given name
 \cs_set:Npn \__ctmlst_envfontname:n #1 {tcb#1font}
@@ -184,7 +184,7 @@
     listing\space engine=minted,
     colback=#1cb, 
     colframe=#1cf, 
-    title=\exp_not:n{#2},
+    title={\exp_not:n{\hspace*{-6mm}}\exp_not:n{#2}},
     minted\space options={
         \ctmlstmintedoptions,
         fontsize=\exp_not:n{#3\selectfont}
